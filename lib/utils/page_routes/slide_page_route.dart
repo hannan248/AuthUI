@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+import '../../pages/home_page.dart';
+
+class SlidePageRoute extends PageRouteBuilder {
+  final Widget _child;
+
+  SlidePageRoute(this._child)
+      : super(
+    transitionDuration: const Duration(milliseconds: 500),
+    transitionsBuilder: (BuildContext _context, Animation<double> animation,
+        Animation<double> secondAnimation, Widget child) {
+      return SlideTransition(
+        position: Tween<Offset>(
+          begin: Offset(-1, 0),
+          end: Offset(0, 0),
+        ).animate(animation),
+        child: child,
+      );
+    },
+    pageBuilder: (BuildContext _context, Animation<double> animation, Animation<double> secondAnimation) {
+      return _child;
+    },
+  );
+}
